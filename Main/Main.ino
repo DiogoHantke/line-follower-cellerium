@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-// Protótipos das funções
 int PIDLambo(int pos, float Kp, float Kd, int pot_limite);
 void beep();
 void WaitBoton();
@@ -18,38 +17,32 @@ void stop();
 void Curve_line(int leitura, bool *state_vel, int *vel_base, int *pot_limite);
 void loop();
 
-const int PINBOTON      = 2;
-const int PINBUZZER     = 10;
-const int PINLED        = 13;
-const int PIN_Sensor_ON = 11;
+#define PINBOTON 2
+#define PINBUZZER 10
+#define PINLED 13
+#define PIN_Sensor_ON 11
+#define AIN1 8
+#define AIN2 9
+#define PWMA 5
+#define BIN1 4
+#define BIN2 7
+#define PWMB 6
+#define vel_base_main 190
+#define STOP_PIN A0
+#define setpoint 0
+#define pot_limit_base 250
+#define debounce_time 120
+#define PIN_SENSOR_LATERAL A7
+#define LIMIAR_BRANCO 30
+#define LIMIAR_SIDE LIMIAR_BRANCO
+#define num_sensors 6
 
-const int AIN1 = 8;
-const int AIN2 = 9;
-const int PWMA = 5;
-
-const int BIN1 = 4;
-const int BIN2 = 7;
-const int PWMB = 6;
-
-const int vel_base_main = 190;
-int vel_base            = 190;
-const int STOP_PIN    = A0;              
-
-int setpoint   = 0;
+int vel_base = 190;
 int last_error = 0;
 int pot_limite = 250;
-const int pot_limit_base = 250;
-const int debounce_time = 120;
-
-const int PIN_SENSOR_LATERAL = A7;
-const int LIMIAR_BRANCO = 30;
-const int LIMIAR_SIDE = LIMIAR_BRANCO;
 bool last_side_state = false;
 long tempo_lento_ms = 0;
 unsigned long last_tempo_update = 0;
-
-const int num_sensors = 6;
-
 int sum_sensors_2 = 0;
 
 void setup() {
